@@ -1,9 +1,31 @@
 import * as THREE from '../ch5_ex4/modules/three.module.js';
 import {VRButton} from './VRButton.js';
 
+// TestTJ
+
+
 var gl, cube, sphere, light, camera, scene, canvas, glContext;
 init();
 animate();
+
+
+
+// Test TJ
+function initStats(type) {
+
+    var panelType = (typeof type !== 'undefined' && type) && (!isNaN(type)) ? parseInt(type) : 0;
+    var statsl = new Stats();
+
+    statsl.showPanel(panelType); // 0: fps, 1: ms, 2: mb, 3+: custom
+    document.body.appendChild(statsl.dom);
+
+    return statsl;
+}
+
+var stats;
+// Ende Test TJ
+
+
 
 function init() {
     // create context
@@ -123,6 +145,8 @@ function init() {
     const ambientLight = new THREE.AmbientLight(ambientColor, ambientIntensity);
     scene.add(ambientLight);
 
+    // Test TJ
+    stats = initStats();
 }
 
 function animate() {
@@ -139,6 +163,9 @@ function draw(time) {
         camera.updateProjectionMatrix();
     }
     
+    // Test TJ
+    stats.update();
+
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
     cube.rotation.z += 0.01;
